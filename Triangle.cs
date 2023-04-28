@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace UserShapes
 {
-    /*
-     * Данный класс является производным от класса фигур Shapes.
-     * Содержит три поля (a и b - поля базового класса, c - поле данного класса),
-     * конструктор, выкидывающий исключение при попытке создания треугольника, не соответствующего теореме о соотношении длин сторон треугольника,
-     * переопределённый метод для подсчёта площади треугольника (используется формула площади треугольника через полупериметр),
-     * метод IsRight(), проверяющий, является треугольник прямоугольным (true) или нет (false).
-     */
-    public class Triangle: Shapes
+    public class Triangle: Shape
     {
-        protected double c { get; set; }
+        private double a;
+        private double b;
+        private double c;
+        /// <summary>
+        /// Checking the main theorem of the triangle
+        /// </summary>
+        /// <param name="a1">first side</param>
+        /// <param name="b1">second side</param>
+        /// <param name="c1">third side</param>
+        /// <returns></returns>
         protected bool CheckSides(double a1, double b1, double c1)
         {
             if((a1 + b1 > c1) && (c1 + b1 > a1) && (a1 + c1 > b1))
@@ -38,13 +40,13 @@ namespace UserShapes
             }
         }
 
-        public override double Area()
+        public override double GetArea()
         {
             double p = (a + b + c) / 2;
             return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
         }
 
-        public bool IsRight()
+        public bool IsRightTriangle()
         {
             if(((a * a + b * b) == c * c) || ((c * c + b * b) == a * a) || ((a * a + c * c) == b * b))
             {

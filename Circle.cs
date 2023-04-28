@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace UserShapes
 {
-    /*
-     * Данный класс является производным от класса эллипса Ellipse.
-     * Содержит два поля (a и b - поля базового класса),
-     * в качестве аргумента для конструктора исопльзуется только один аргумент - радиус.
-     */
-    public class Circle: Ellipse
+    public class Circle: Shape
     {
-        public Circle(double r): base(r, r) { }
-
+        private double _radius;
+        public double Radius { get { return _radius; } }
+        public Circle(double radius) 
+        {
+            _radius = radius;
+        }
+        public override double GetArea()
+        {
+            return Math.PI*_radius*_radius;
+        }
     }
 }
